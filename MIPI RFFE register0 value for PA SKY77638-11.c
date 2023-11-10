@@ -23,7 +23,7 @@ int main(void){
 	sscanf(band_sel, "%s %d", &band_sl, &band_sl_num);
 	
 	char pa_mode;
-    printf("%s","2. Input H,L PA mode:");
+        printf("%s","2. Input H,L PA mode:");
 	scanf("%c",&pa_mode);
 
 	char lb_switch[2];
@@ -31,8 +31,6 @@ int main(void){
 	scanf("%s",lb_switch);
 
 	int i = 0;
-	
-
 	switch(band_sl[0]){
 		case 'L':
 			for(i=1;i<5;i++){
