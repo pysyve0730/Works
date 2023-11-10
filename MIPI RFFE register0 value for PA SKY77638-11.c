@@ -2,15 +2,6 @@
 #include <stdlib.h> 
 #include <string.h>
 
-struct REG_0{
-    int trigger = 0x00;
-    int band_select = 0x00;
-    int pa_enable = 0x01;
-    int pa_mode = 0x00;
-    int lb_switch = 0x00;
-
-};
-
 int main(void){
 	struct REG_0 reg_0;
 	struct REG_0 *ptr = &reg_0;
