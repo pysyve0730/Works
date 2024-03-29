@@ -31,7 +31,6 @@ for line in lines:
                 start_pkg_time.append(info[1])
                 
             elif "8883" in info and ("FIN," in hand_shake_type[0] or "RST," in hand_shake_type[0]):
-                print(info)
                 end_pkg_num.append(info[9])
                 end_pkg_time.append(info[1])
                 
