@@ -62,12 +62,6 @@ wb_end.save("output_0329_end.xlsx")
 
 
 
-# fin_dict = dict(zip(end_pkg_num, end_pkg_time))
-# print(fin_dict)
-# rst_dict = dict(zip(rst_pkg_num, rst_pkg_time))
-# print(rst_dict)
-
-
 
 
 
