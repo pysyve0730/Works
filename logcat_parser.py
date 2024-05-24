@@ -5,18 +5,32 @@ start_date = input()
 print("請輸入查看開始時間(ex:14:40):")
 start_time = input()
 
-print("選擇顯示相關log(mms,supl,ims,volte,signal,roaming):")
+print("選擇顯示相關log(1. mms, 2. supl, 3. ims, 4. volte, 5. signal, 6. roaming):")
 
 
-func_log = input()
+func_num = int(input())
+func_log=[]
+match func_num:
+        case 1:
+            func_log = "mms"
+        case 2:
+            func_log = "supl"
+        case 3:
+            func_log = "ims"
+        case 4:
+            func_log = "volte"   
+        case 5:
+            func_log = "signal"   
+        case 6:
+            func_log = "roaming"     
+        case _:
+            func_log = "Input is wrong!"
 
 
 # print("請輸入查看結束日期(ex:05-09):")
 # end_date = input()
 # print("請輸入查看結束時間(ex:14:40):")
 # end_date = input()
-
-
 
 
 f = open("logcat", "r",encoding='UTF-8')
@@ -63,13 +77,13 @@ for line in lines:
             
     
     
-    #print(tmp[0]) #date
-    #print(tmp[1]) #time
-    #print(tmp[2]) #pid
-    #print(tmp[3]) #pid
-    #print(tmp[6]) log property
-    #print(tmp[7]) Classify
+    
     
 file.close()
 
- 
+ #print(tmp[0]) #date
+ #print(tmp[1]) #time
+ #print(tmp[2]) #pid
+ #print(tmp[3]) #pid
+ #print(tmp[6]) log property
+ #print(tmp[7]) Classify
