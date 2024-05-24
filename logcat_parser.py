@@ -5,20 +5,20 @@ start_date = input()
 print("請輸入查看開始時間(ex:14:40):")
 start_time = input()
 
-print("選擇顯示相關log(1. mms, 2. supl, 3. ims, 4. volte, 5. signal, 6. roaming):")
+print("選擇顯示相關log(1. LTE network, 2. mms, 3. ims, 4. sms,volte, 5. signal, 6. roaming):")
 
 
 func_num = int(input())
 func_log=[]
 match func_num:
         case 1:
-            func_log = "mms"
+            func_log = "LTE network"
         case 2:
-            func_log = "supl"
+            func_log = "mms"
         case 3:
             func_log = "ims"
         case 4:
-            func_log = "volte"   
+            func_log = "sms,volte"   
         case 5:
             func_log = "signal"   
         case 6:
@@ -33,6 +33,8 @@ match func_num:
 # end_date = input()
 
 
+
+
 f = open("logcat", "r",encoding='UTF-8')
 lines = f.readlines()
 
@@ -44,7 +46,7 @@ for line in lines:
     tmp = re.split(r' ', line)
     
     if(start_date==tmp[0]) and (start_time in tmp[1]):
-            if(func_log=="mms") or (func_log=="supl"):
+            if(func_log=="LTE network"):
                 ## Check network(LTE) (supl,mms)
                 if("Broadcasting ServiceState" in line):
                     file.write(line)
@@ -52,9 +54,14 @@ for line in lines:
                     file.write(line)
                 if("OPERATOR" in line) and ("<" in line):
                     file.write(line)
-                #MMS
-                if("destination port" in line) and ("2948" in tmp[10]) or ("processMessagePart:" in line):
+                if("ConnectivityService" in line):
                     file.write(line)
+                    
+                    
+                #MMS
+                if(func_log=="mms"):
+                    if("destination port" in line) and ("2948" in tmp[10]) or ("processMessagePart:" in line):
+                        file.write(line)
                     
                     
                     
@@ -70,14 +77,12 @@ for line in lines:
     if(func_log=="signal"):
         if("RIL_REQUEST_GET_CELL_INFO_LIST" in line) and ("<" in line):
             file.write(line)
+    if(func_log=="roaming"):
+        if(".regState" in line) and ("<" in line):
+            file.write(line)
+        if("Broadcasting ServiceState" in line):
+            file.write(line)
             
-
-                    
-            
-            
-    
-    
-    
     
 file.close()
 
