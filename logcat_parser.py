@@ -62,6 +62,9 @@ def lte_network(line):
             file.write(line)
 
 def ims(line):
+    ## Check IMS (volte sms)
+    if("Broadcasting ServiceState" in line):
+            file.write(line)
     if("VOICE_REGISTRATION_STATE" in line) and ("<" in line):
             file.write(line)
 
@@ -131,7 +134,6 @@ def capture_log(date,time,tmp):
 
 for line in lines:
     tmp = re.split(r' ', line)
-    
     capture_log(start_date,start_time,tmp)
     capture_log(end_date,end_time,tmp)
     
@@ -140,10 +142,3 @@ for line in lines:
     
     
 file.close()
-
- #print(tmp[0]) #date
- #print(tmp[1]) #time
- #print(tmp[2]) #pid
- #print(tmp[3]) #pid
- #print(tmp[6]) log property
- #print(tmp[7]) Classify
