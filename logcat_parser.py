@@ -1,6 +1,6 @@
 import re
 
-print("選擇顯示相關log(1. LTE network, 2. mms, 3. ims, 4. sms, 5. signal, 6. roaming, 7. volte, 8. crash):")
+print("選擇顯示相關log(1. LTE network, 2. mms, 3. ims, 4. sms, 5. signal, 6. roaming, 7. volte, 8. crash, 9. D2C):")
 func_num = int(input())
 
 func_log=[]
@@ -21,6 +21,8 @@ match func_num:
             func_log = "volte"
         case 8:
             func_log = "crash"
+        case 9:
+            fun_log = "D2C"
         case _:
             func_log = "Input is wrong!"
             
@@ -86,6 +88,20 @@ def crash(line):
             file.write(line)
     if("fatal exception" in line):
             file.write(line)
+            
+def D2C(line):
+    if("getD2CMessageObservable D2C id:" in line):
+        file.write(line)
+    if("getD2CMessageObservable IoT Hub" in line):
+        file.write(line)
+    if("Start handling workingObservable result" in line):
+        file.write(line)
+    if("handleD2CResult Send" in line):
+        file.write(line)
+    if("messageCallback C2D message" in line):
+        file.write(line)
+            
+            
 
 def capture_log(date,time,tmp):
 
@@ -128,7 +144,10 @@ def capture_log(date,time,tmp):
         roaming(line)
        
     if(func_log=="crash"):
-       crash(line) 
+       crash(line)
+       
+    if(func_log=="D2C")
+        D2C(line)
 
 
 
@@ -142,3 +161,10 @@ for line in lines:
     
     
 file.close()
+
+ #print(tmp[0]) #date
+ #print(tmp[1]) #time
+ #print(tmp[2]) #pid
+ #print(tmp[3]) #pid
+ #print(tmp[6]) log property
+ #print(tmp[7]) Classify
